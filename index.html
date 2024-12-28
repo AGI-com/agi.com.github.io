@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <style>
+        .question {
+            margin-bottom: 20px;
+        }
+        .choices {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container"></div>
+
+    <script>
+        const questions = {
+            "QuestionsList": [
+                {
+                    "question": "What does 'ChatGPT' stand for?",
+                    "choices": [ "Chat Generative Pretrained Transformer", "Chat Generative Processing Text", "Chat Generalized Pretrained Transformer", "Chat General Processing Text" ],
+                    "answer": "A"
+                },
+                {
+                    "question": "Who developed ChatGPT?",
+                    "choices": [ "Google", "Microsoft", "OpenAI", "Facebook" ],
+                    "answer": "C"
+                },
+                {
+                    "question": "What is the primary function of ChatGPT?",
+                    "choices": [ "Image generation", "Text generation", "Audio transcription", "Data analysis" ],
+                    "answer": "B"
+                },
+                {
+                    "question": "Which model architecture is used by ChatGPT?",
+                    "choices": [ "CNN", "RNN", "Transformer", "LSTM" ],
+                    "answer": "C"
+                },
+                {
+                    "question": "What is the latest version of GPT as of December 2024?",
+                    "choices": [ "GPT-2", "GPT-3", "GPT-4", "GPT-5" ],
+                    "answer": "C"
+                },
+                {
+                    "question": "What is the primary training data type for ChatGPT?",
+                    "choices": [ "Images", "Text", "Audio", "Video" ],
+                    "answer": "B"
+                },
+                {
+                    "question": "ChatGPT is known to generate text in which of the following?",
+                    "choices": [ "Conversational style", "Scientific papers only", "Only short responses", "Code exclusively" ],
+                    "answer": "A"
+                },
+                {
+                    "question": "Which company is behind the creation of GPT models?",
+                    "choices": [ "OpenAI", "Google", "IBM", "Microsoft" ],
+                    "answer": "A"
+                },
+                {
+                    "question": "What programming language is often used to interact with ChatGPT?",
+                    "choices": [ "Java", "Python", "C++", "JavaScript" ],
+                    "answer": "B"
+                },
+                {
+                    "question": "Which feature does ChatGPT provide for conversations?",
+                    "choices": [ "Real-time video streaming", "Audio generation", "Text-based responses", "Text and image creation" ],
+                    "answer": "C"
+                }
+            ]
+        };
+
+        const answerMap = { "A": 0, "B": 1, "C": 2, "D": 3 };
+
+        function createQuiz() {
+            const container = document.getElementById('quiz-container');
+            questions.QuestionsList.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+
+                const choicesDiv = document.createElement('div');
+                choicesDiv.className = 'choices';
+
+                q.choices.forEach((choice, i) => {
+                    const choiceLabel = document.createElement('label');
+                    const isChecked = i === answerMap[q.answer] ? 'checked' : '';
+                    choiceLabel.innerHTML = `
+                        <input type="radio" name="question${index}" value="${choice}" ${isChecked} disabled>
+                        ${choice}
+                    `;
+                    choicesDiv.appendChild(choiceLabel);
+                    choicesDiv.appendChild(document.createElement('br'));
+                });
+
+                questionDiv.appendChild(choicesDiv);
+                container.appendChild(questionDiv);
+            });
+        }
+
+        createQuiz();
+    </script>
+</body>
+</html>
